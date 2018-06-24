@@ -535,10 +535,14 @@ class newChunkie {
 		switch (TRUE) {
 			case (substr($tpl, 0, 5) == '@FILE'):
 				$filename = trim(substr($tpl, 5), ' :');
+				$test2 = $this->modx->chunkieCache['@FILE'];
 				if (!isset($this->modx->chunkieCache['@FILE'])) {
-					$this->modx->chunkieCache['@FILE'] = array();
+					//$this->modx->chunkieCache['@FILE'] = array();
+					// error array_key_exists (str 545) returns NULL
+					$test2 = array();
 				}
-				if (!empty($filename) && !array_key_exists($filename, $this->modx->chunkieCache['@FILE'])) {
+				//if (!empty($filename) && !array_key_exists($filename, $this->modx->chunkieCache['@FILE'])) {
+				if (!empty($filename) && !array_key_exists($filename, $test2)) {
 					if (file_exists($this->options['basepath'] . $filename)) {
 						$template = file_get_contents($this->options['basepath'] . $filename);
 					} else {
