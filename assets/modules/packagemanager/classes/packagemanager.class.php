@@ -636,11 +636,11 @@ class PackageManager {
 			}
 			if ($info) {
 				$info = reset($info);
-				$newname = $this->validFilename(strtolower($info[name]) . '-' . strtolower($info['version']) . '.zip');
-				$packagename = $info[name] . ' ' . $info['version'];
+				$newname = $this->validFilename(strtolower($info['name']) . '-' . strtolower($info['version']) . '.zip');
+				$packagename = $info['name'] . ' ' . $info['version'];
 				if (file_exists($this->options['packagesPath'] . $newname)) {
 					$result = $this->installer->resultMessage(array(
-						'package' => $info[name] . ' ' . $info['version']
+						'package' => $info['name'] . ' ' . $info['version']
 					), $this->language['file_upload_error_exists'], false);
 				} else {
 					if (!rename($zipname, $this->options['packagesPath'] . $newname)) {
